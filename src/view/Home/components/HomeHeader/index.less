@@ -1,0 +1,71 @@
+.home-header{
+    width: 100%;
+    height: 56px;
+    background-color: #000;
+    position: fixed;
+    left: 0;
+    top: 0; 
+    z-index: 999;
+
+    .header-box{
+        height: 56px;
+        display: flex;
+        justify-content: space-between;
+        color: #ffffff;
+        line-height: 56px;
+    }
+    .icon{
+        padding-left: 10px;
+    }
+    .list{
+        padding-right: 10px;
+    }
+
+    .home-menus{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 56px;
+        background-color: #000;
+        li{
+            
+            color: #ffffff;
+            border-top: 1px solid #2a2a2a;
+            text-align: center;
+            height: 45px;
+            line-height: 45px;
+            &.active{
+                color: orange;
+            }
+        }
+    }
+}
+
+
+
+//enter是入场前的刹那（点击按钮），appear指页面第一次加载前的一刹那（自动）
+.fade-enter, .fade-appear {
+    opacity: 0;
+}
+//enter-active指入场后到入场结束的过程，appear-active则是页面第一次加载自动执行
+.fade-enter-active, .fade-appear-active { 
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+//入场动画执行完毕后，保持状态
+.fade-enter-done {
+    opacity: 1;
+}
+//同理，出场前的一刹那，以下就不详细解释了，一样的道理
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.fade-exit-done {
+    opacity: 0;
+}

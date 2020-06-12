@@ -7,15 +7,23 @@ import Mine from './view/Mine';
 import Profile from './view/Profile';
 import Layout from './view/Layout'
 
+import store from "./store"; 
+import { Provider } from "react-redux";
+
 ReactDOM.render(
-  <Router>
-    <Layout>
-      <Switch>
-        <Route exact path='/' component={Home}></Route>
-        <Route path='/mine' component={Mine}></Route>
-        <Route path='/profile' component={Profile}></Route>
-      </Switch>
-    </Layout>
-  </Router>,
+  // 仓库的属性store传给Provider
+  // Provider 传给子集
+  <Provider store={store}>
+    <Router>
+      <Layout>
+        <Switch>
+          <Route exact path='/' component={Home}></Route>
+          <Route path='/mine' component={Mine}></Route>
+          <Route path='/profile' component={Profile}></Route>
+        </Switch>
+      </Layout>
+    </Router>
+  </Provider>
+  ,
   document.getElementById('root')
 );
