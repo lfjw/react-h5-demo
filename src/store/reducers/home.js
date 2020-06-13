@@ -16,4 +16,12 @@ export default function (state = initState, action) {
   }
 }
 
+/**
+ * (previousState, action) => newState
+ * 函数特征
+ * 纯函数，返回新对象，不能改变原有的值
+ * 不可变 immutability
+ * 突变 mutation
+ */
+
 

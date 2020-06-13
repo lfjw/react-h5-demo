@@ -10,7 +10,7 @@ export default {
     }
   },
   getSliders() {
-    return function (dispatch) {
+    return function (dispatch, getState) {
       getSliders().then(res => {
         dispatch({
           type: types.SET_HOME_SLIDERS,

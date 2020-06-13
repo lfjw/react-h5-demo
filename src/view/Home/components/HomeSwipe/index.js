@@ -15,7 +15,7 @@ export default class HomeSwipe extends Component {
 
   render() {
     let { sliders } = this.props
-    
+
     return (
 
       <div className='home-swipe'>
