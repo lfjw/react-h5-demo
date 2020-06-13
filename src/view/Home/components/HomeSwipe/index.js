@@ -6,31 +6,27 @@ import ReactSwipe from 'react-swipe';
 export default class HomeSwipe extends Component {
 
   state = {
-    index: 0
-  }
-  render() {
-    let swipeOptions = {
+    index: 0,
+    swipeOptions: {
       continuous: false,
-      callback: function (index) {
-        // TODO 显示不正确
-        this.setState({ index: index })
-      }.bind(this)
+      callback: (index, elem) => { this.setState({ index }) }
     }
+  }
+
+  render() {
     let { sliders } = this.props
+    
     return (
 
       <div className='home-swipe'>
         {
           sliders.length > 0 ?
             (
-              <ReactSwipe className="carousel" swipeOptions={swipeOptions}>
+              <ReactSwipe className="carousel" swipeOptions={this.state.swipeOptions}>
                 {
                   sliders.map((item, index) => (
                     <div key={index}>
-                      <img src={item} />
-                      {/* {index} -- {
-                         this.state.index
-                      } */}
+                      <img alt='图片' src={item} />
                     </div>
                   ))
                 }
@@ -45,6 +41,7 @@ export default class HomeSwipe extends Component {
             ))
           }
         </div>
+
       </div>
     )
   }

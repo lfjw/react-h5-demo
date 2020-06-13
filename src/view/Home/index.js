@@ -22,24 +22,26 @@ import './index.less'
 
 // 第二种写法
 class Home extends Component {
-    componentDidMount() {
-        this.props.getSliders()
-    }
-    render() {
-        let { category, changeCategory, sliders } = this.props
-        return (
-            <Fragment>
-                {/* category 输入   仓库中的分类取出来赋值给HomeHeader */}
-                {/* changeCategory 输出  HomeHeader 可以调用changeCategory 改变分类*/}
-                <HomeHeader
-                    category={category}
-                    changeCategory={changeCategory} />
-                <div className='main-content'>
-                    <HomeSwipe sliders={sliders}></HomeSwipe>
-                </div>
-            </Fragment>
-        )
-    }
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.getSliders()
+    }, 1000);
+  }
+  render() {
+    let { category, changeCategory, sliders } = this.props
+    return (
+      <Fragment>
+        {/* category 输入   仓库中的分类取出来赋值给HomeHeader */}
+        {/* changeCategory 输出  HomeHeader 可以调用changeCategory 改变分类*/}
+        <HomeHeader
+          category={category}
+          changeCategory={changeCategory} />
+        <div className='main-content'>
+          <HomeSwipe sliders={sliders}></HomeSwipe>
+        </div>
+      </Fragment>
+    )
+  }
 }
 // 仓库的拿到值
 // 值派发给仓库
