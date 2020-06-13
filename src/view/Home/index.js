@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import HomeHeader from './components/HomeHeader';
 import HomeSwipe from './components/HomeSwipe';
+import HomeLessons from './components/HomeLessons';
 
 import { connect } from "react-redux";
 import actions from '../../store/actions'
 import './index.less'
+import { loadMore,downReferesh } from '../../utils';
 
 // 第一种写法 高级语言，不建议使用
 // @connect(
@@ -25,10 +27,16 @@ class Home extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.getSliders()
+      this.props.getLessons()
     }, 1000);
+
+
+    loadMore(this.mainContent, this.props.getLessons);
+    
+    downReferesh(this.mainContent, this.props.refreshLessons);
   }
   render() {
-    let { category, changeCategory, sliders } = this.props
+    let { category, changeCategory, sliders, lessons } = this.props
     return (
       <Fragment>
         {/* category 输入   仓库中的分类取出来赋值给HomeHeader */}
@@ -36,8 +44,10 @@ class Home extends Component {
         <HomeHeader
           category={category}
           changeCategory={changeCategory} />
-        <div className='main-content'>
-          <HomeSwipe sliders={sliders}></HomeSwipe>
+        <div className='main-content' ref={ref => this.mainContent = ref}>
+          <HomeSwipe sliders={sliders} />
+
+          <HomeLessons lessons={lessons} />
         </div>
       </Fragment>
     )
