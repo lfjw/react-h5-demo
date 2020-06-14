@@ -3,12 +3,14 @@ import * as types from '../action-types';
 import { getSliders, getLessons } from '../../api/home'
 
 export default {
+
   changeCategory(category) {
     return {
       type: types.CHANGE_CATEGORY,
       payload: category
     }
   },
+
   getSliders() {
     return function (dispatch, getState) {
       getSliders().then(res => {
@@ -17,15 +19,22 @@ export default {
           payload: res
         })
       })
-
     }
-
   },
 
+  // 上拉加载
   getLessons() {
     return function (dispatch, getState) {
       const { category, lessons: { offset, limit, hasMore, loading } } = getState().home;
+
+
       if (hasMore && !loading) {
+
+
+        dispatch({
+          type: types.LESSONS_LOADING
+        })
+
         getLessons(category, offset, limit).then(payload => {
           dispatch({
             type: types.SET_HOME_LESSONS,
@@ -34,7 +43,6 @@ export default {
         })
       }
     }
-
   },
 
   // 重新加载
@@ -50,6 +58,7 @@ export default {
         })
       }
     }
-
   },
+
+
 }

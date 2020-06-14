@@ -37,7 +37,7 @@ export function loadMore(element, callback) {
  * @param {*} element 
  * @param {*} callback 
  */
-export function downReferesh(element, callback) {
+export function downRefresh(element, callback) {
   let startY; //刚按下的时候，初始坐标
   let distance; //下拉的距离
   let originTop = element.offsetTop; // 最初的距离父级顶部的距离
@@ -45,12 +45,12 @@ export function downReferesh(element, callback) {
   element.addEventListener('touchstart', function (event) {
 
     // 回弹过程中在拉不生效
-    if(element.offsetTop !== originTop){
-      return 
+    if (element.offsetTop !== originTop) {
+      return
     }
 
     // 滑动半截，下拉出问题
-    if(element.scrollTop !== 0){
+    if (element.scrollTop !== 0) {
       return
     }
 

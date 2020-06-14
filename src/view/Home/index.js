@@ -6,9 +6,9 @@ import HomeLessons from './components/HomeLessons';
 import { connect } from "react-redux";
 import actions from '../../store/actions'
 import './index.less'
-import { loadMore,downReferesh } from '../../utils';
+import { loadMore, downRefresh } from '../../utils';
 
-// 第一种写法 高级语言，不建议使用
+// 第一种写法 装饰器兼容性不太友好，不建议使用
 // @connect(
 //     state => state.home
 // )
@@ -25,15 +25,14 @@ import { loadMore,downReferesh } from '../../utils';
 // 第二种写法
 class Home extends Component {
   componentDidMount() {
-    setTimeout(() => {
-      this.props.getSliders()
-      this.props.getLessons()
-    }, 1000);
-
-
+    // redux 调用轮播图
+    this.props.getSliders()
+    // redux 调用课程列表
+    this.props.getLessons()
+    // 上拉加载
     loadMore(this.mainContent, this.props.getLessons);
-    
-    downReferesh(this.mainContent, this.props.refreshLessons);
+    // 下拉刷新
+    downRefresh(this.mainContent, this.props.refreshLessons);
   }
   render() {
     let { category, changeCategory, sliders, lessons } = this.props
@@ -46,7 +45,6 @@ class Home extends Component {
           changeCategory={changeCategory} />
         <div className='main-content' ref={ref => this.mainContent = ref}>
           <HomeSwipe sliders={sliders} />
-
           <HomeLessons lessons={lessons} />
         </div>
       </Fragment>

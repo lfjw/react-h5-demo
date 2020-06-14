@@ -7,5 +7,8 @@ export const SET_HOME_SLIDERS = 'SET_HOME_SLIDERS';
 // 保存首页课程列表
 export const SET_HOME_LESSONS = 'SET_HOME_LESSONS';
 
-// 加载
+// 重新加载
 export const REFRESH_HOME_LESSONS = 'REFRESH_HOME_LESSONS'
+
+// 课程列表加载loading
+export const LESSONS_LOADING = 'LESSONS_LOADING'

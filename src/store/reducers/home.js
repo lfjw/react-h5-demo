@@ -16,8 +16,17 @@ export default function (state = initState, action) {
   switch (action.type) {
     case types.CHANGE_CATEGORY:
       return { ...state, category: action.payload }
+
     case types.SET_HOME_SLIDERS:
       return { ...state, sliders: action.payload }
+
+    case types.LESSONS_LOADING:
+      return {
+        ...state,lessons:{
+          ...state.lessons,
+          loading: true
+        }
+      }
     case types.SET_HOME_LESSONS:
       return {
         ...state, lessons: {

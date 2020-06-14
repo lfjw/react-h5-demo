@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Loading from '../../../../components/Loading';
-
 import './index.less';
 
 export default class HomeLessons extends Component {
   render() {
-    let { list, hasMore, loading } = this.props.lessons
+    const { list, hasMore, loading } = this.props.lessons
+
     return (
       <div className='home-lessons'>
         <div className='all-lessons'>
@@ -22,7 +22,7 @@ export default class HomeLessons extends Component {
             </div>
           )) : '暂无数据'
         }
-        {/* TODO 加载图标没有实现 */}
+
         {
           loading ? <Loading></Loading> : <div className='loading-more' onClick={this.props.getLessons}>
             {hasMore ? "点击加载更多" : "到底了"}
