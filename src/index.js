@@ -14,32 +14,33 @@ import Reg from './view/Reg'
 
 import store from "./store";
 import { Provider } from "react-redux";
+import PrivateRoute from './components/PrivateRoute'
+
+
 // 为了在redux使用router 替换掉Router
 // TODO 问题解决
 
 // eslint-disable-next-line no-unused-vars
 import { ConnectedRouter } from 'react-router-redux'
-import history from './history';
-
-console.log(history);
+//import history from './history';
 
 ReactDOM.render(
   // 仓库的属性store传给Provider
   // Provider 传给子集
   <Provider store={store}>
     <Router>
-    {/* <ConnectedRouter history={history}> */}
+      {/* <ConnectedRouter history={history}> */}
       <Layout>
         <Switch>
           <Route exact path='/' component={Home}></Route>
-          <Route path='/mine' component={Mine}></Route>
+          <PrivateRoute path='/mine' component={Mine}></PrivateRoute>
           <Route path='/profile' component={Profile}></Route>
           <Route path='/detail/:id' component={Detail}></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/reg' component={Reg}></Route>
         </Switch>
       </Layout>
-    {/* </ConnectedRouter> */}
+      {/* </ConnectedRouter> */}
     </Router>
   </Provider>
   ,

@@ -115,3 +115,10 @@ const lessModuleRegex = /\.module\.less$/;
 - 5.编写action方法，用来调用API方法，请求接口，并得到返回的数据，构造action派发给仓库
 - 6.在组件里调用此方法，并且填充仓库
 - 7.在组件中渲染数据
+
+
+
+
+## 6.15任务 
+- redux 结合 router
+- 登录，成功之后回显
