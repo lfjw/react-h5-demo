@@ -27,10 +27,8 @@ export default {
     return function (dispatch, getState) {
       const { category, lessons: { offset, limit, hasMore, loading } } = getState().home;
 
-
       if (hasMore && !loading) {
-
-
+        // 加载loading
         dispatch({
           type: types.LESSONS_LOADING
         })
@@ -48,8 +46,8 @@ export default {
   // 重新加载
   refreshLessons() {
     return function (dispatch, getState) {
-      const { category, lessons: { limit, hasMore, loading } } = getState().home;
-      if (hasMore && !loading) {
+      const { category, lessons: { limit, loading } } = getState().home;
+      if (!loading) {
         getLessons(category, 0, limit).then(payload => {
           dispatch({
             type: types.REFRESH_HOME_LESSONS,

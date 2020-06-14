@@ -89,6 +89,7 @@ export function downRefresh(element, callback) {
 
       // element.style.transition = 'all 1s ease-in';
       // element.style.top = originTop + 'px'
+      
       if (distance > 30) {
         callback()
       }
