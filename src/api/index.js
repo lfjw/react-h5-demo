@@ -13,5 +13,5 @@ export function post(url, data){
             "Accept": "application/json"
         },
         body: JSON.stringify(data)
-    })
+    }).then(response => response.json())
 }

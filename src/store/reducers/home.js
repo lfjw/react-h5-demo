@@ -8,7 +8,8 @@ let initState = {
     hasMore: true, // 是否还有数据，上拉加载...
     offset: 0,// 取下一页数据偏移量
     limit: 5, // 每页条数
-    loading: false, // 是否正在加载...
+    loading: false, //上拉加载...
+
   }
 }
 
@@ -22,9 +23,22 @@ export default function (state = initState, action) {
 
     case types.LESSONS_LOADING:
       return {
-        ...state,lessons:{
+        // TODO 延伸扩展一下action.payload
+        ...state, lessons: {
           ...state.lessons,
           loading: true
+          // action.payload
+        }
+      }
+
+    case types.TOP_HOME_LESSONS:
+      return {
+        ...state, lessons: {
+          ...state.lessons,
+          list: [],
+          loading: true,
+          offset: 0,
+          hasMore: true
         }
       }
     case types.SET_HOME_LESSONS:
@@ -34,7 +48,8 @@ export default function (state = initState, action) {
           list: [...state.lessons.list, ...action.payload.list],
           hasMore: action.payload.hasMore,
           offset: state.lessons.offset + action.payload.list.length,
-          loading: false
+          loading: false, //上拉加载...
+      
         }
       }
 
@@ -45,7 +60,8 @@ export default function (state = initState, action) {
           list: action.payload.list,
           hasMore: action.payload.hasMore,
           offset: action.payload.list.length,
-          loading: false
+          loading: false, //上拉加载...
+      
         }
       }
     default:

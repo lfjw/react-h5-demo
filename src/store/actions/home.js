@@ -29,8 +29,10 @@ export default {
 
       if (hasMore && !loading) {
         // 加载loading
+        // TODO 延伸扩展一下action.payload
         dispatch({
-          type: types.LESSONS_LOADING
+          type: types.LESSONS_LOADING,
+          //payload: true,
         })
 
         getLessons(category, offset, limit).then(payload => {
@@ -48,6 +50,10 @@ export default {
     return function (dispatch, getState) {
       const { category, lessons: { limit, loading } } = getState().home;
       if (!loading) {
+        // 清空list 加载loading
+        dispatch({
+          type: types.TOP_HOME_LESSONS,
+        })
         getLessons(category, 0, limit).then(payload => {
           dispatch({
             type: types.REFRESH_HOME_LESSONS,
@@ -57,6 +63,10 @@ export default {
       }
     }
   },
+
+
+
+
 
 
 }

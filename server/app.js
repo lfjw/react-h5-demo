@@ -1,7 +1,19 @@
-const express = require('express');
-const app = express()
+let express = require('express');
+let app = express()
+let bodyParser = require('body-parser')
+let session = require('express-session')
 
-const cors = require('cors')
+let cors = require('cors')
+
+app.use(bodyParser.json())
+app.use(session({
+  resave: true,
+  secret: 'jw',
+  saveUninitialized: true,
+}))
+
+
+
 app.use(cors())
 
 const sliders = require('./mock/sliders');
@@ -20,7 +32,7 @@ app.get('/getLessons/:category', function (req, res) {
   let list = JSON.parse(JSON.stringify(lessons));
 
   if (category !== 'all') {
-    list = lessons.filter(item => item.category === category)
+    list = list.filter(item => item.category === category)
   }
 
   let total = list.length
@@ -38,5 +50,33 @@ app.get('/getLessons/:category', function (req, res) {
 
 })
 
+
+let users = []
+app.post('/reg', function (req, res) {
+  let user = req.body
+  users.push(user);
+  console.log(users,'----已经注册的数据---');
+  
+  res.json({
+    success: '注册成功！'
+  })
+})
+
+app.post('/login', function (req, res) {
+  let body = req.body // {username, password}
+  let user = users.find(item => item.username === body.username && item.password === body.password)
+  if (user) {
+    req.session.user = user
+    res.json({
+      user,
+      success: '登录成功'
+    })
+  } else {
+    res.json({
+      user,
+      success: '登录失败'
+    })
+  }
+})
 
 app.listen(3333)

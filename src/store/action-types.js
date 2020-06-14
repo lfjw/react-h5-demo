@@ -12,3 +12,9 @@ export const REFRESH_HOME_LESSONS = 'REFRESH_HOME_LESSONS'
 
 // 课程列表加载loading
 export const LESSONS_LOADING = 'LESSONS_LOADING'
+
+// 清空课程列表，增加loading
+export const TOP_HOME_LESSONS = 'TOP_HOME_LESSONS'
+
+// 创建sessions
+export const SET_SESSION = 'SET_SESSION'
