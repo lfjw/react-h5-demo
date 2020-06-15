@@ -13,7 +13,8 @@ export default {
         })
 
         if (!payload.error) {
-          console.log('注册成功---');
+          console.log('跳转到登录页面---');
+          
         }else{
           console.log('注册失败');
         }

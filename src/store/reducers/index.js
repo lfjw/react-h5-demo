@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
 import home from './home';
 import session from './session'
-// 合并
-export default combineReducers({
+import { connectRouter } from 'connected-react-router';
+import history from '../../history';
+
+let reducers = combineReducers({
+  router: connectRouter(history),
   home,
-  session
-})
+  session,
+});
+export default reducers;

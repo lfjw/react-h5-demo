@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import './index.less';
 import NavHeader from '../../components/NavHeader';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+class Login extends Component {
 
-export default class Login extends Component {
   render() {
     return (
       <div className='login'>
@@ -19,3 +20,6 @@ export default class Login extends Component {
     )
   }
 }
+
+
+export default connect()(Login)

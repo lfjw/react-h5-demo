@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import Tab from '../../components/Tab'
 import '../../common/global.less';
+import { connect } from 'react-redux';
 
-export default class Layout extends Component {
+class Layout extends Component {
     render() {
         return <Fragment>
             {/* 相当于 */}
@@ -16,3 +17,6 @@ export default class Layout extends Component {
         </Fragment>
     }
 }
+
+export default connect()(Layout)
+

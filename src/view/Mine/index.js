@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './index.less';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class Mine extends Component {
+class Mine extends Component {
   render() {
     return (
       <div className='mine'>
@@ -16,3 +17,5 @@ export default class Mine extends Component {
     )
   }
 }
+export default connect()(Mine)
+
