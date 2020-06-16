@@ -1,10 +1,11 @@
 import * as types from '../action-types';
-// 请求
 import { reg, login } from '../../api/session'
-
+import { push } from "connected-react-router";
 export default {
+
   reg(body) {
     return function (dispatch, getState) {
+
       reg(body).then(payload => {
         // {user, success, error}
         dispatch({
@@ -13,34 +14,30 @@ export default {
         })
 
         if (!payload.error) {
-          console.log('跳转到登录页面---');
-          
-        }else{
+          // push 返回的是一个函数 { type: xx, payload :{methods: push}}
+          dispatch(push('/login'))
+        } else {
           console.log('注册失败');
         }
 
-        // TODO 未实现redux跳转路由
 
-        // 注册成功，跳转到登录页登录
-        // 注册失败
       })
     }
   },
 
   login(body) {
     return function (dispatch, getState) {
-      login(body).then(payload => {
+      login(body).then(res => {
         dispatch({
           type: types.SET_SESSION,
-          payload
+          payload: res
         })
-        if (!payload.error) {
+        if (!res.error) {
+          dispatch(push('/mine'))
           console.log('登录成功');
-        }else{
+        } else {
           console.log('登录失败');
         }
-
-
       })
     }
   }

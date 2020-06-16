@@ -9,7 +9,6 @@ export default class HomeLessons extends Component {
 
     const isBottomEmptyDiv = !hasMore && <span>到底了</span>
     const isBottomDiv = list.length > 0 && isBottomEmptyDiv;
-
     const isTopListDiv = list.map((item, index) => (
       // 通过state刷新就完蛋
       // 所以传递一个参数

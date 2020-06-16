@@ -8,27 +8,10 @@ import actions from '../../store/actions/home'
 import './index.less'
 import { loadMore, downRefresh } from '../../utils';
 
-// 第一种写法 装饰器兼容性不太友好，不建议使用
-// @connect(
-//     state => state.home
-// )
-// export default class Home extends Component {
-//     render() {
-//         return (
-//             <Fragment>
-//                 <HomeHeader />home
-//             </Fragment>
-//         )
-//     }
-// }
-
-// 第二种写法
 class Home extends Component {
   componentDidMount() {
-    // redux 调用轮播图
-    this.props.getSliders()
-    // redux 调用课程列表
-    this.props.getLessons()
+    this.props.getSliders() // 调用轮播图
+    this.props.getLessons() // 课程列表
     // 上拉加载
     loadMore(this.mainContent, this.props.getLessons);
     // 下拉刷新
@@ -38,8 +21,6 @@ class Home extends Component {
     let { category, changeCategory, sliders, lessons, refreshLessons } = this.props
     return (
       <Fragment>
-        {/* category 输入   仓库中的分类取出来赋值给HomeHeader */}
-        {/* changeCategory 输出  HomeHeader 可以调用changeCategory 改变分类*/}
         <HomeHeader
           category={category}
           changeCategory={changeCategory}
@@ -56,7 +37,4 @@ class Home extends Component {
     )
   }
 }
-// 仓库的拿到值
-// 值派发给仓库
-// actions 当前组件的属性对象
 export default connect(state => state.home, actions)(Home)

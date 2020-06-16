@@ -68,13 +68,12 @@ app.post('/login', function (req, res) {
   if (user) {
     req.session.user = user
     res.json({
-      user,
+      user: body.username,
       success: '登录成功'
     })
   } else {
     res.json({
-      user,
-      success: '登录失败'
+      error: '登录失败'
     })
   }
 })

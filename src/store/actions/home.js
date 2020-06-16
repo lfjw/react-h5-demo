@@ -1,16 +1,15 @@
 import * as types from '../action-types';
-// 请求
 import { getSliders, getLessons } from '../../api/home'
 
 export default {
-
+  // 改变课程目录
   changeCategory(category) {
     return {
       type: types.CHANGE_CATEGORY,
       payload: category
     }
   },
-
+  // 接口请求轮播图
   getSliders() {
     return function (dispatch, getState) {
       getSliders().then(res => {
@@ -26,10 +25,10 @@ export default {
   getLessons() {
     return function (dispatch, getState) {
       const { category, lessons: { offset, limit, hasMore, loading } } = getState().home;
-
       if (hasMore && !loading) {
+        // dispatch参数 就是action
+        // action.type/action.payload
         // 加载loading
-        // TODO 延伸扩展一下action.payload
         dispatch({
           type: types.LESSONS_LOADING,
           //payload: true,

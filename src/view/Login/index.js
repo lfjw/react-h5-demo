@@ -3,8 +3,12 @@ import './index.less';
 import NavHeader from '../../components/NavHeader';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import session from '../../store/actions/session'
 class Login extends Component {
-
+  onLogin = () => {
+    const { login } = this.props;
+    login({ username: this.phone.value, password: this.password.value })
+  }
   render() {
     return (
       <div className='login'>
@@ -12,14 +16,12 @@ class Login extends Component {
         <div className='login-bg'>
           <div className='img'>头像</div>
         </div>
-        <input type='text' placeholder='手机号'></input>
-        <input type='text' placeholder='密码'></input>
+        <input type='text' placeholder='手机号' ref={ref => this.phone = ref}></input>
+        <input type='password' placeholder='密码' ref={ref => this.password = ref}></input>
         <Link to='/reg'>前往注册</Link>
-        <button>登&nbsp;&nbsp;录</button>
+        <button onClick={this.onLogin}>登&nbsp;&nbsp;录</button>
       </div>
     )
   }
 }
-
-
-export default connect()(Login)
+export default connect(state => state.session, session)(Login)

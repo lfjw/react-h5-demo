@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-
 import './index.less';
 
 export default class HomeHeader extends Component {

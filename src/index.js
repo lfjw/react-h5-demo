@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import store from "./store";
 import { Provider } from "react-redux";
-
-import { ConnectedRouter } from 'connected-react-router'
+import { ConnectedRouter } from 'connected-react-router';
 import history from './history';
-
-import App from './view/App'
+import App from './view/App';
 
 ReactDOM.render(
   // 仓库的属性store传给Provider

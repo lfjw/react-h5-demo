@@ -1,6 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
 import * as React from 'react';
-
 import Home from '../Home';
 import Mine from '../Mine';
 import Profile from '../Profile';
@@ -8,9 +7,7 @@ import Detail from '../Detail';
 import Login from '../Login';
 import Reg from '../Reg';
 import Layout from '../Layout'
-
 import PrivateRoute from '../../components/PrivateRoute'
-
 export default class App extends React.Component {
   render() {
     return (
