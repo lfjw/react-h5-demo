@@ -3,7 +3,7 @@ let app = express()
 let bodyParser = require('body-parser')
 let session = require('express-session')
 
-let cors = require('cors')
+//let cors = require('cors')
 
 app.use(bodyParser.json())
 app.use(session({
@@ -14,7 +14,16 @@ app.use(session({
 
 
 
-app.use(cors())
+//app.use(cors())
+app.use(function(req, res, next){
+  // 设置了credentials: 'include',
+  // 就不能使用*，必须指定域名
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT')
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Accept')
+  res.header('Access-Control-Allow-Credentials', 'true') // 允许cookie发送
+  next()
+})
 
 const sliders = require('./mock/sliders');
 app.get('/getSliders', function (req, res) {
@@ -74,6 +83,23 @@ app.post('/login', function (req, res) {
   } else {
     res.json({
       error: '登录失败'
+    })
+  }
+})
+
+
+app.get('/validate', function(req, res){
+  let user = req.session.user;
+  console.log(req.session,'req.session');
+  
+  if(user){
+    res.json({
+      user:user.username,
+      success: '此用户已登录'
+    })
+  }else{
+    res.json({
+      error: '此用户未登录'
     })
   }
 })

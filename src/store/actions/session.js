@@ -33,8 +33,10 @@ export default {
           payload: res
         })
         if (!res.error) {
-          dispatch(push('/mine'))
-          console.log('登录成功');
+          let state = getState().router.location.state
+          let target = state ? state.from : '/mine'
+          console.log('登录成功',target);
+          dispatch(push(target))
         } else {
           console.log('登录失败');
         }
